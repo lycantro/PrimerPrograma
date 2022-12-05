@@ -2,8 +2,11 @@ import random
 dinero_ingresado= int(input("ingresa la cantidad de usdt a jugar\n"
                             "$"))
 
+
 enter=input("bienvenido al tragacriptos \n"
-            "oprime la palanca 1 centavo [enter]")
+            "oprime la palanca 1 centavo [enter]"+str(dinero_ingresado)+str(dinero_ingresado-0.25))
+
+
 
 numero_mostrado = random.randint(99,1000)
 nummero_ganador2= 500
@@ -27,7 +30,7 @@ else: print("sigue intentando")
 
 while True:
         enter = input(
-                      "oprime la palanca 1 centavo [enter]")
+                      "oprime la palanca 1 centavo [enter]{}".format(dinero_ingresado - 25))
         numero_mostrado = random.randint(99, 1000)
         nummero_ganador2= 500
         numero_ganador3 = 777
@@ -48,7 +51,7 @@ while True:
         if numero_ganador6 == numero_mostrado:
             print("felicidades llevas 500 usdt\n"
                   "oprime enter para seguir ganando")
-            
+
 
 
 
