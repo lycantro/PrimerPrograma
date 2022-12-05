@@ -48,6 +48,7 @@ while True:
         if numero_ganador6 == numero_mostrado:
             print("felicidades llevas 500 usdt\n"
                   "oprime enter para seguir ganando")
+            
 
 
 
@@ -56,21 +57,3 @@ while True:
 
 
 
-#enter=input("oprime [y]para continuar")
-#while enter == "y":
-    ##numero_ganador = random.randint(1, 10)
-    #numero = (int(input()))
-
-    #if numero != numero_ganador:
-       # print("reinicia el programa has perdido")
-
-    #if numero == numero_ganador:
-        #print("has ganado")
-   # if numero > 10:
-       # print("seleccionaste un numero mayor a uno reinicia el juego")
-    #if numero < 1:
-       # print("seleccionaste un numero inferior a uno")
-   # else:
-        #print("debes seleccionar un numero")
-
-   # print("el numero ganador era {}".format(numero_ganador))
