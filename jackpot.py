@@ -48,7 +48,7 @@ while True:
         if numero_ganador6 == numero_mostrado:
             print("felicidades llevas 500 usdt\n"
                   "oprime enter para seguir ganando")
-            Hola soy leonardo y amo la verga
+            
 
 
 
