@@ -38,7 +38,7 @@ if apuesta_eleccion == "a":
 
             numero_mostrado = random.randint(499, 501)
 
-            enter =(input("oprime la palanca 25 centavo [enter]"))
+            enter =(input("oprime la palanca 15 centavo [enter]"))
             print("numero ganador = {}".format (numero_mostrado))
 
 
@@ -56,7 +56,7 @@ if apuesta_eleccion == "a":
                 dinero += 700
                 print("felicidades llevas 500 usdt{}".format(dinero + 500))
             elif numero_mostrado != numero_ganador7 and numero_ganador6 and numero_ganador4 and numero_ganador3 and nummero_ganador2:
-                dinero -= 0.25
+                dinero -= 0.15
             print("tu saldo es = {}".format(dinero))
     # hasta aqui va bien el codigo solo debemos cambiar repetir el juego con l a cantidd a ingresar
             while dinero == 0.25:
