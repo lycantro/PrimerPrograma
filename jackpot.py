@@ -36,7 +36,7 @@ if apuesta_eleccion == "a":
 
     while True:
 
-            numero_mostrado = random.randint(499, 501)
+            numero_mostrado = random.randint(1000, 998)
 
             enter =(input("oprime la palanca 15 centavo [enter]"))
             print("numero ganador = {}".format (numero_mostrado))
@@ -106,16 +106,46 @@ elif apuesta_eleccion== "b":
             dinero -= 0.25
         print("tu saldo es = {}".format(dinero))
 
+        # aqui va para los 50 centavos
+
+
+elif apuesta_eleccion == "c":
+        print("has seleccionado la opcion ce de 50 centavos ")
+        dinero= dinero_ingresado
 
 
 
 
 
+        while True:
+            numero_ganador12 = 999
 
+            numero_ganador13 = 444
 
+            numero_ganador14 = 152
 
+            numero_ganador15 = 759
 
-# vida_alakazan -= 10
+            numero_mostrado = random.randint(699, 800)
+
+            enter = (input("oprime la palanca 50 centavo [enter]"))
+            print("numero ganador = {}".format(numero_mostrado))
+
+            if numero_ganador12 == numero_mostrado:
+                dinero += 1000
+                print(" felicidades has ganado 100 usdt{}".format(dinero + 100))
+            elif numero_ganador13 == numero_mostrado:
+                dinero += 2000
+                print(" felicidades has ganado el jackpot te llevas 1000{}".format(dinero + 1000))
+            elif numero_ganador14 == numero_mostrado:
+                dinero += 3000
+                print("felicidades te llevas el doble de lo ingresado")
+            elif numero_ganador15 == numero_mostrado:
+                dinero += 4000
+                print("felicidades llevas 500 usdt{}".format(dinero + 500))
+            elif numero_mostrado != numero_ganador12 and numero_ganador13 and numero_ganador14 and numero_ganador15:
+                dinero -= 0.50
+            print("tu saldo es = {}".format(dinero))
 
 
 
