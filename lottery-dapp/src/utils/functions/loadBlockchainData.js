@@ -1,11 +1,10 @@
-import contrato_loteria from "../../../build/contracts/Prediction.json";
+import contrato_loteria from "../../build/contracts/Prediction.json";
 
 const loadBlockchainData = async () => {
-  const networkGame = 97;
+  const networDeploy = 97;
   const web3 = window.web3;
   //carga de la cuenta
   let contract;
-  let contract_BUSD;
   const accounts = await web3.eth.getAccounts();
   console.log("Account: ", accounts[0]);
   const networkId = "97"; //---------------------------------------aca se cambia segun la red donde se despliegue ganache: 5777 BscTestnet: 97
@@ -13,8 +12,9 @@ const loadBlockchainData = async () => {
   const networkData = contrato_loteria.networks[networkId];
   console.log("NetworkData: ", networkData);
   const network = await web3.eth.getChainId();
+  console.log("Network Id:", network);
 
-  if (network != networkGame) {
+  if (network != networDeploy) {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: "0x61" }], // chainId must be in hexadecimal numbers
