@@ -97,6 +97,18 @@ contract Lottery {
         emit withdraw(msg.sender, _amountWithdrawall);
     }
 
+    function userDeposit() public view returns(uint256){
+        return users[msg.sender].amount;
+    }
+
+    function userWins() public view returns(uint256){
+        return users[msg.sender].wins;
+    }
+
+    function userProfits() public view returns(uint256){
+        return users[msg.sender].amountWins;
+    }
+
 }
 
 contract Prediction is Lottery {
