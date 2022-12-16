@@ -29,7 +29,7 @@ const App = () => {
   });
   close?.addEventListener("click", () => {
     modal_container?.classList.remove("show");
-  });  
+  });
 
   useEffect(() => {
     //carga de web3
@@ -41,7 +41,7 @@ const App = () => {
     });
   }, []);
   useEffect(() => {
-    userDepositUpdate();
+    userLotteryBalanceUpdate();
     userViewBalance();
   }, [user_deposits, user_choose, contract, account, value_choose]);
 
@@ -50,12 +50,22 @@ const App = () => {
       .userFunding()
       .send({ from: account, value: value })
       .then(() => {
-        userDepositUpdate();
+        userLotteryBalanceUpdate();
         document.getElementById("input_send").placeholder = "USD";
       });
   };
 
-  const userDepositUpdate = async () => {
+  const withdrawall = async (value) => {
+    contract.methods
+      .userWithdrawall(value)
+      .send({ from: account })
+      .then(() => {
+        userLotteryBalanceUpdate();
+        document.getElementById("input_send").placeholder = "USD";
+      });
+  };
+
+  const userLotteryBalanceUpdate = async () => {
     contract.methods
       .userDeposit()
       .call({ from: account })
@@ -65,20 +75,28 @@ const App = () => {
       });
   };
 
+  const userLotteryWinsUpdate = async () => {
+    contract.methods
+      .userWins()
+      .call({ from: account })
+      .then((valueWins) => {
+        setUserWins(valueWins);
+      });
+  };
+
+  const userLotteryProfitUpdate = async () => {
+    contract.methods
+      .userProfits()
+      .call({ from: account })
+      .then((amountProfits) => {
+        setUserProfits(amountProfits);
+      });
+  };
+
   const userViewBalance = async () => {
     var value = await window.web3.eth.getBalance(account);
     value = await window.web3.utils.fromWei(value);
     setUserBalance(value);
-  };
-
-  const withdrawall = async (value) => {
-    contract.methods
-      .userWithdrawall(value)
-      .send({ from: account })
-      .then(() => {
-        userDepositUpdate();
-        document.getElementById("input_send").placeholder = "USD";
-      });
   };
 
   return (
@@ -116,8 +134,8 @@ const App = () => {
         </div>
         <div>
           <button className="App-button-user-detail">
-            BALANCE: {user_deposits.toString().substring(0, 6)} USD | WINS: 3 |
-            PROFITS: 23 USD
+            BALANCE: {user_deposits.toString().substring(0, 6)} USD | WINS:{" "}
+            {user_wins} | PROFITS: {user_profits} USD
           </button>
         </div>
       </div>
