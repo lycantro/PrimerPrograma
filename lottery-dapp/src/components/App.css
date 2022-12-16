@@ -80,9 +80,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;  
+  height: 19rem;
 }
 .Logo {
-  position: relative;
+  
   width: 50%;
   animation: logomove 5s infinite;
 }

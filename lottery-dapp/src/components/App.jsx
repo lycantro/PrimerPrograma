@@ -5,6 +5,7 @@ import loadBlockchainData from "../utils/functions/loadBlockchainData";
 
 import "./App.css";
 import Logo from "../assets/images/CL_Logo.png";
+import Prediction from "./Prediction/Prediction";
 
 const App = () => {
   const [account, setAccount] = useState("");
@@ -177,6 +178,7 @@ const App = () => {
           </div>
         </div>
       </div>
+      <Prediction />
     </div>
   );
 };
