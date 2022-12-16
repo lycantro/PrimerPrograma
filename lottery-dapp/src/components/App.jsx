@@ -5,17 +5,31 @@ import loadBlockchainData from "../utils/functions/loadBlockchainData";
 
 import "./App.css";
 import Logo from "../assets/images/CL_Logo.png";
-import "./popupDeposit.js";
 
 const App = () => {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
   const [user_deposits, setUserDeposits] = useState(0);
-  const [deposits, setDeposits] = useState(0);
+  const [value_choose, setValueChoose] = useState(0);
+  const [user_choose, setUserChoose] = useState(false);
   const [user_wins, setUserWins] = useState(0);
   const [user_profits, setUserProfits] = useState(0);
-  const [user_withdrawalls, setUserWithdrawalls] = useState(false);
   const [user_balance, setUserBalance] = useState(0);
+
+  const open_deposit = document.getElementById("open-deposit");
+  const open_close = document.getElementById("open-close");
+  const modal_container = document.getElementById("modal_container");
+  const close = document.getElementById("close");
+
+  open_deposit?.addEventListener("click", () => {
+    modal_container?.classList.add("show");
+  });
+  open_close?.addEventListener("click", () => {
+    modal_container?.classList.add("show");
+  });
+  close?.addEventListener("click", () => {
+    modal_container?.classList.remove("show");
+  });  
 
   useEffect(() => {
     //carga de web3
@@ -26,11 +40,10 @@ const App = () => {
       setContract(current_contract.contract);
     });
   }, []);
-
   useEffect(() => {
     userDepositUpdate();
     userViewBalance();
-  }, [user_deposits, user_withdrawalls, contract, account,deposits]);
+  }, [user_deposits, user_choose, contract, account, value_choose]);
 
   const deposit = async (value) => {
     contract.methods
@@ -38,6 +51,7 @@ const App = () => {
       .send({ from: account, value: value })
       .then(() => {
         userDepositUpdate();
+        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -57,13 +71,13 @@ const App = () => {
     setUserBalance(value);
   };
 
-  const withdrawall = async () => {
-    setUserWithdrawalls(false);
+  const withdrawall = async (value) => {
     contract.methods
-      .userWithdrawall(10000000000000000n)
+      .userWithdrawall(value)
       .send({ from: account })
       .then(() => {
-        setUserWithdrawalls(true);
+        userDepositUpdate();
+        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -74,28 +88,36 @@ const App = () => {
           <div>
             <button
               className="App-buttonWDA"
+              id="open-close"
               onClick={() => {
-                withdrawall();
+                setUserChoose(false);
               }}
             >
-              WITHDRAWALL
+              WITHDRAW
             </button>
           </div>
           <div>
-            <button class="App-buttonWDA" id="open">
+            <button
+              class="App-buttonWDA"
+              id="open-deposit"
+              onClick={() => {
+                setUserChoose(true);
+              }}
+            >
               DEPOSIT
             </button>
           </div>
           <div>
             <button className="App-buttonWDA">
-              ACCOUNT: {account.toString().substring(0, 6)}...{account.slice(-4)}{" "}
+              ACCOUNT: {account.toString().substring(0, 6)}...
+              {account.slice(-4)}{" "}
             </button>
           </div>
         </div>
         <div>
           <button className="App-button-user-detail">
-            BALANCE: {user_deposits.toString().substring(0, 6)} USD | WINS: 3 | PROFITS: 23
-            USD
+            BALANCE: {user_deposits.toString().substring(0, 6)} USD | WINS: 3 |
+            PROFITS: 23 USD
           </button>
         </div>
       </div>
@@ -105,7 +127,7 @@ const App = () => {
 
       <div id="modal_container" class="modal-container">
         <div class="modal">
-          <p>Deposit your funds</p>
+          <p>{user_choose ? "Deposit your funds" : "Withdraw your funds"}</p>
           <div class="balance">
             Your balance: {user_balance.toString().substring(0, 6)} BNB
           </div>
@@ -113,11 +135,12 @@ const App = () => {
             Your Lottery balance: {user_deposits.toString().substring(0, 6)} BNB
           </div>
           <input
+            id="input_send"
             type="number"
             placeholder="USD"
-            value={deposits === 0 ? "" : deposits}
+            value={value_choose === 0 ? "" : value_choose}
             onChange={(event) => {
-              setDeposits(event.target.value);
+              setValueChoose(event.target.value);
             }}
           />
           <div class="modal-btn">
@@ -125,10 +148,10 @@ const App = () => {
               id="send"
               className="btn1"
               onClick={() => {
-                deposit(deposits);
+                user_choose ? deposit(value_choose) : withdrawall(value_choose);
               }}
             >
-              DEPOSIT
+              {user_choose ? "DEPOSIT" : "WITHDRAW"}
             </button>
             <button id="close" className="btn2">
               CLOSE
