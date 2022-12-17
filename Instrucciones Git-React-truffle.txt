@@ -1,0 +1,15 @@
+Git:
+1 inciar git con comando: git init
+2 subir cambios
+2.1 git add .
+2.2 git commit -m "mensaje"
+2.3 git push
+
+truffle:
+1. crear ficheros truffle con comando: truffle init
+2. truffle compile
+3. turffle migrate
+
+React:
+1. installacion con: npx create-react-app nombre-aplicacion
+2. npm start

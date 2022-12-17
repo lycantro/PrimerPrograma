@@ -1,0 +1,231 @@
+.App {
+  text-align: center;
+}
+
+.App-header-account-details {
+  float: right;
+  display:flex;  
+  flex-direction: column;
+  align-items: right;
+  justify-content: right;
+  margin: 0.8rem;  
+}
+
+.App-WDA {  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;  
+}
+
+.App-buttonWDA {
+  box-sizing: border-box;
+  background-color: #DF7A05;
+  border: 0.1rem solid #E97E00;
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  font-style: normal;
+  font-size: 1.1rem;
+  line-height: 2rem;
+  color: white;
+
+  mix-blend-mode: normal;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  margin: 0.4rem;  
+  padding-left: 0.9rem ;
+  padding-right: 0.9rem ;
+}
+
+.App-buttonWDA:hover {
+  background-color: #b86200;
+  color: white;
+  border: 0.1rem solid #c56900;
+}
+
+.App-button-user-detail {
+  box-sizing: border-box;
+  background-color: #34303A;
+  border: 0.1rem solid #FFFFFF;
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  font-style: normal;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  color: white;
+
+  margin: 0.4rem;  
+  
+  padding-left: 0.9rem ;
+  padding-right: 0.9rem ;
+  width: 98%;
+}
+.App-Logo {
+  clear: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  height: 19rem;
+}
+.Logo {
+  
+  width: 50%;
+  animation: logomove 5s infinite;
+}
+@keyframes logomove {
+  0%   {width: 50%;}
+  50%  {width: 52%}
+  100% {width: 50%;}
+}
+
+
+.modal-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;  
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  transition-duration: 0.8s;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal {
+  background-color: #fff;
+  width: 35rem;
+  max-width: 100%;
+  padding: 3rem 4rem;
+  border-radius: 5px;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+  text-align: center;  
+}
+ input {
+	width: 100%;
+	margin-bottom: 1.2rem;  
+  margin-top: 1.2rem;
+  border-radius: 1rem;
+	height: 3rem;
+	font-size: 2rem;
+	text-align: center;
+	border: 0.1rem solid #767575;
+
+  font-family: 'Lato';
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: rgb(0, 0, 0);
+}
+ .modal-btn{
+  float: center;
+  display:flex;  
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+	cursor: pointer;
+}
+
+.btn1 {
+  box-sizing: border-box;
+  background-color: #DF7A05;
+  border: 0.1rem solid #E97E00;
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 2.4rem;
+  color: white;
+
+  mix-blend-mode: normal;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  margin: 0.4rem;  
+  padding-left: 0.9rem ;
+  padding-right: 0.9rem ;
+}
+
+.btn1:hover {
+  background-color: #b86200;
+  color: white;
+  border: 0.1rem solid #c56900;
+}
+.btn2 {
+  box-sizing: border-box;
+  background-color: #989898;
+  border: 0.1rem solid #e6e6e6;
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 2.4rem;
+  color: white;
+
+  mix-blend-mode: normal;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  margin: 0.4rem;  
+  padding-left: 0.9rem ;
+  padding-right: 0.9rem ;
+}
+
+.btn2:hover {
+  background-color: #c7c7c7;
+  color: rgb(234, 234, 234);
+  border: 0.1rem solid #eaeaea;
+}
+
+p {
+  font-family: 'Lato';
+  font-style: normal;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: rgb(0, 0, 0);
+  margin: 2rem;
+}
+.balance{
+  font-family: 'Lato';
+  font-style: normal;
+  font-size: 1.1rem;
+  font-weight: 200;
+  line-height: 2rem;
+  color: rgb(0, 0, 0);
+}

@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract Lottery {
@@ -95,6 +95,18 @@ contract Lottery {
         payable(Owner_Contract).transfer(_amountWithdrawall);
 
         emit withdraw(msg.sender, _amountWithdrawall);
+    }
+
+    function userDeposit() public view returns(uint256){
+        return users[msg.sender].amount;
+    }
+
+    function userWins() public view returns(uint256){
+        return users[msg.sender].wins;
+    }
+
+    function userProfits() public view returns(uint256){
+        return users[msg.sender].amountWins;
     }
 
 }
