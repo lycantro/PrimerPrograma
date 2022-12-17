@@ -1,4 +1,5 @@
 import random
+import time
 
 
 dinero_ingresado= float(input("ingresa la cantidad de usdt a jugar\n"
@@ -36,9 +37,10 @@ if apuesta_eleccion == "a":
 
     while True:
 
-            numero_mostrado = random.randint(1000, 998)
+            numero_mostrado = random.randint(500, 998)
 
             enter =(input("oprime la palanca 15 centavo [enter]"))
+            time.sleep(0.5)
             print("numero ganador = {}".format (numero_mostrado))
 
 
@@ -125,8 +127,11 @@ elif apuesta_eleccion == "c":
             numero_ganador14 = 152
 
             numero_ganador15 = 759
-
             numero_mostrado = random.randint(699, 800)
+
+
+
+
 
             enter = (input("oprime la palanca 50 centavo [enter]"))
             print("numero ganador = {}".format(numero_mostrado))
@@ -149,3 +154,5 @@ elif apuesta_eleccion == "c":
 
 
 
+
+#crear un directorio denytro de sources na carpeta que digas pyhton files
