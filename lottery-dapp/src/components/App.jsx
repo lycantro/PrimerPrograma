@@ -154,6 +154,7 @@ const App = () => {
             Your Lottery balance: {user_deposits.toString().substring(0, 6)} BNB
           </div>
           <input
+            className="input_value"
             id="input_send"
             type="number"
             placeholder="USD"

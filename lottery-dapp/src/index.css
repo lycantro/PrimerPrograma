@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  background-color: #282c34;
+  background-image: url("./assets/images/background_general.jpg");
+  background-size: 100%;
   font-family: -apple-system, BlinkMacSystemFont;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
