@@ -44,6 +44,8 @@ const App = () => {
   useEffect(() => {
     userLotteryBalanceUpdate();
     userViewBalance();
+    userLotteryWinsUpdate();
+    userLotteryProfitUpdate();
   }, [user_deposits, user_choose, contract, account, value_choose]);
 
   const deposit = async (value) => {

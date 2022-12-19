@@ -200,6 +200,11 @@ contract Prediction is Lottery {
         //ActualPrice =_price;        
         (,ActualPrice,,,) =priceFeed.latestRoundData(); 
     }
+    function pricePair() public view returns (int){
+        int price;
+        (,price,,,) =priceFeed.latestRoundData();
+        return price;
+    }
 
     
 
