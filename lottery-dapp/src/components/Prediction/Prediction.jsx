@@ -21,6 +21,7 @@ const Prediction = () => {
       setAccount(current_contract.account);
       setContract(current_contract.contract);
     });
+    pricePair();
   }, []);
 
   const betUpFactor = async () => {
@@ -63,7 +64,7 @@ const Prediction = () => {
       <div className="time"> Tiempo restante</div>
       <div className="countdown"> 03:23 m</div>
       <div className="up_price">UP {bet_up_factor}X Pay</div>
-      <div className="actual_price">$16.952.25</div>
+      <div className="actual_price">${price_pair}</div>
       <div className="pair">BTC/USD</div>
       <div className="down_price">DOWN {bet_down_factor}X Pay</div>
 
