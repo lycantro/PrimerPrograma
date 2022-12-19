@@ -21,7 +21,6 @@ const Prediction = () => {
       setAccount(current_contract.account);
       setContract(current_contract.contract);
     });
-    pricePair();
   }, []);
 
   const betUpFactor = async () => {
@@ -49,10 +48,15 @@ const Prediction = () => {
   };
 
   const pricePair = async () => {
-    contract.methods.call().then((value) => {
-      setPricePair(value);
-    });
+    contract.methods
+      .pricePair()
+      .call()
+      .then((value) => {
+        setPricePair(value);
+      });
   };
+
+  //setInterval(pricePair(), 2000);
 
   return (
     <div>

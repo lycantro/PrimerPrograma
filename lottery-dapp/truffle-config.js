@@ -56,6 +56,7 @@ module.exports = {
           0 //Wallet index used in Metamask : 1 for account 2 in Metamask
         ),
       network_id: 97,
+      networkCheckTimeout: 999999,
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true,
