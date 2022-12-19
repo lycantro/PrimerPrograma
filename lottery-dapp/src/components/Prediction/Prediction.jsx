@@ -1,9 +1,11 @@
+import "./Prediction.css";
+
 const Prediction = () => {
   return (
     <div>
       <div className="tittle_prediction">PREDICTION</div>
       <div className="number_game_prediction"> Juego #40</div>
-      <div className="line_img">linea blanca</div>
+      <div className="line_img"></div>
       <div className="price_loked">Precio fijado: $4564532 USD</div>
       <div className="actual_pool">Pool Actual: $44532 USD</div>
       <div className="time"> Tiempo restante</div>
@@ -14,7 +16,7 @@ const Prediction = () => {
       <div className="down_price">Abajo 1.8X Pago</div>
 
       <div className="user_interactive_prediction">
-        <div  className="btns_up_down">
+        <div className="btns_up_down">
           <button className="btn_up">Arriba </button>
           <input className="input_amount_prediction" placeholder="USD" />
           <button className="btn_down">Abajo </button>
@@ -24,7 +26,6 @@ const Prediction = () => {
           <div className="user_balance">Your Balance: 42 USD</div>
         </div>
       </div>
-
     </div>
   );
 };
