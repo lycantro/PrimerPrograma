@@ -28,7 +28,6 @@ const CountDownTimer = ({ minSecs }) => {
       .call()
       .then((value) => {
         setTimeLocked(value);
-        console.log("este:", value);
       });
   };
   const rewards = async () => {
@@ -49,15 +48,30 @@ const CountDownTimer = ({ minSecs }) => {
 
     if (
       minutes_time_actual - minutes_time_locked >= 5 &&
-      seconds_time_actual - seconds_time_locked >= 10
+      seconds_time_actual - seconds_time_locked >= 0
     ) {
+      const rewardsCalculatedTx = contract.methods.RewardsCalculated();
+
+      const createTransaction = await window.web3.eth.accounts.signTransaction(
+        {
+          to: "contract_addres",
+          data: rewardsCalculatedTx.encodeABI(),
+          gas: await rewardsCalculatedTx.estimateGas(),
+        },
+        "Private_key"
+      );
+
+      const createReceipt = await window.web3.eth.sendSignedTransaction(
+        createTransaction.rawTransaction
+      );
+
       console.log("Entre");
-      console.log(account);
       contract.methods
         .RewardsCalculated()
         .send({ from: account })
         .then(() => {
           console.log("Ejecutado");
+          timeLocked();
         });
     }
   };
@@ -66,13 +80,17 @@ const CountDownTimer = ({ minSecs }) => {
       reset();
     } else if (secs === 0) {
       setTime([mins - 1, 59]);
+      const date_time_locked = new Date(time_locked * 1000); //x1000 to convert from seconds to milliseconds
+      console.log(date_time_locked);
+      const c = contract;
+      console.log("contrato: ", c._address);
     } else {
       setTime([mins, secs - 1]);
     }
   };
   const reset = () => {
-    setTime([parseInt(minutes), parseInt(seconds)]);
     rewards();
+    setTime([parseInt(minutes), parseInt(seconds)]);
   };
 
   useEffect(() => {
