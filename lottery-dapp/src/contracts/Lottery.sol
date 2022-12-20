@@ -39,14 +39,10 @@ contract Lottery {
        
 
     modifier OnlyOwner(){
-        require(msg.sender == Contract_Address,"You arent the owner of this Lottery");
+        require(msg.sender == Owner_Contract,"You arent the owner of this Lottery");
         _;
     }
 
-    modifier OnlyContract(){
-        require(msg.sender == Owner_Contract,"You arent the contract");
-        _;
-    }
 
     function changeOwnerFee(uint256 _fee) public OnlyOwner {
         OWNER_FEE = _fee;

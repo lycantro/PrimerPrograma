@@ -13,8 +13,6 @@ const Prediction = () => {
   const [bet_down_factor, setBetDownFactor] = useState(0);
   const [bet_prediction_pool, setPredictionPool] = useState(0);
   const [price_pair, setPricePair] = useState(0);
-  const [time_locked, setTimeLocked] = useState(0);
-  const [time_reward, setTimeReward] = useState(0);
   const [price_locked, setPriceLocked] = useState(0);
   const [value_choose, setValueChoose] = useState(0);
 
@@ -34,7 +32,6 @@ const Prediction = () => {
     betPredictionPool();
     pricePair();
     priceLocked();
-    timeLocked();
   }, [contract, account, price_pair, value_choose]);
 
   const betUpFactor = async () => {
@@ -82,26 +79,6 @@ const Prediction = () => {
       });
   };
 
-  const timeLocked = async () => {
-    contract.methods
-      .timeLoked()
-      .call()
-      .then((value) => {
-        CountDownTimer({ minutes: 5, seconds: 0 });
-        var d = new Date(value * 1000); //x1000 to convert from seconds to milliseconds
-        var dr = d;
-        var s = d.toUTCString();
-        var sr = dr.setMinutes(d.getMinutes() + 5);
-        console.log(sr);
-        sr = dr.toUTCString();
-
-        s = s.substring(0, s.indexOf("GMT")) + "UTC"; //change the confusing 'GMT' to 'UTC'
-        sr = sr.substring(0, sr.indexOf("GMT")) + "UTC"; //change the confusing 'GMT' to 'UTC'
-        console.log("Time locked: ", s, " Time reward: ", sr);
-        setTimeLocked(s);
-      });
-  };
-
   const userUp = async (value) => {
     contract.methods
       .priceUp(value)
@@ -112,7 +89,6 @@ const Prediction = () => {
         betPredictionPool();
         pricePair();
         priceLocked();
-        timeLocked();
       });
   };
 
@@ -126,7 +102,6 @@ const Prediction = () => {
         betPredictionPool();
         pricePair();
         priceLocked();
-        timeLocked();
       });
   };
   return (
@@ -138,7 +113,7 @@ const Prediction = () => {
       <div className="actual_pool">Pool Actual: ${bet_prediction_pool} USD</div>
       <div className="time"> Tiempo restante</div>
       <div className="countdown">
-        <CountDownTimer minSecs={{ minutes: 5, seconds: 0 }} />
+        <CountDownTimer minSecs={{ minutes: 5, seconds: 10 }} />
       </div>
       <div className="up_price">UP {bet_up_factor}X Pay</div>
       <div className="actual_price">${price_pair}</div>

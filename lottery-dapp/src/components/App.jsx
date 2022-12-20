@@ -54,7 +54,6 @@ const App = () => {
       .send({ from: account, value: value })
       .then(() => {
         userLotteryBalanceUpdate();
-        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -64,7 +63,6 @@ const App = () => {
       .send({ from: account })
       .then(() => {
         userLotteryBalanceUpdate();
-        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -74,6 +72,7 @@ const App = () => {
       .call({ from: account })
       .then((amountDeposit) => {
         console.log("Tu deposito fue de: ", amountDeposit);
+
         setUserDeposits(amountDeposit);
       });
   };
