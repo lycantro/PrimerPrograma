@@ -13,6 +13,7 @@ const CountDownTimer = ({ minSecs }) => {
   const [time_reward, setTimeReward] = useState(0);
 
   useEffect(() => {
+    timeLocked();
     //carga de web3
     loadWeb3();
     //carga de los datos de la blockchain
@@ -46,25 +47,29 @@ const CountDownTimer = ({ minSecs }) => {
     const seconds_time_locked = date_time_locked.getSeconds(); //Tiempo actual
     console.log("Time locked: ", minutes_time_locked, " ", seconds_time_locked);
 
-    if (
-      minutes_time_actual - minutes_time_locked >= 5 &&
-      seconds_time_actual - seconds_time_locked >= 0
-    ) {
+    if (minutes_time_actual - minutes_time_locked >= 0) {
+      console.log("Entre");
+      const c = contract;
+      console.log("contrato: ", c._address);
       const rewardsCalculatedTx = contract.methods.RewardsCalculated();
 
       const createTransaction = await window.web3.eth.accounts.signTransaction(
         {
-          to: "contract_addres",
+          to: c._address,
           data: rewardsCalculatedTx.encodeABI(),
           gas: await rewardsCalculatedTx.estimateGas(),
+          chainId: "97",
         },
-        "Private_key"
+        "0xed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf"
       );
 
       const createReceipt = await window.web3.eth.sendSignedTransaction(
         createTransaction.rawTransaction
       );
-
+      console.log(
+        `Transaction send with hash: ${createReceipt.transactionHash}`
+      );
+      /*
       console.log("Entre");
       contract.methods
         .RewardsCalculated()
@@ -72,18 +77,19 @@ const CountDownTimer = ({ minSecs }) => {
         .then(() => {
           console.log("Ejecutado");
           timeLocked();
-        });
+        });*/
     }
   };
-  const tick = () => {
+  const tick = async () => {
     if (mins === 0 && secs === 0) {
       reset();
     } else if (secs === 0) {
       setTime([mins - 1, 59]);
+      timeLocked();
       const date_time_locked = new Date(time_locked * 1000); //x1000 to convert from seconds to milliseconds
-      console.log(date_time_locked);
-      const c = contract;
-      console.log("contrato: ", c._address);
+      console.log(date_time_locked, await window.web3.eth.net.getId());
+      const b = await contract.methods.Owner_Contract().call();
+      console.log("owner contract:", b);
     } else {
       setTime([mins, secs - 1]);
     }
