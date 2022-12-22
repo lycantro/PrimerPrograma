@@ -113,7 +113,7 @@ const Prediction = () => {
       <div className="actual_pool">Pool Actual: ${bet_prediction_pool} USD</div>
       <div className="time"> Tiempo restante</div>
       <div className="countdown">
-        <CountDownTimer minSecs={{ minutes: 2, seconds: 10 }} />
+        <CountDownTimer minSecs={{ minutes: 0, seconds: 30 }} />
       </div>
       <div className="up_price">UP {bet_up_factor}X Pay</div>
       <div className="actual_price">${price_pair}</div>
