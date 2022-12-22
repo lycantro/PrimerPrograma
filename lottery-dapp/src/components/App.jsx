@@ -44,6 +44,8 @@ const App = () => {
   useEffect(() => {
     userLotteryBalanceUpdate();
     userViewBalance();
+    userLotteryWinsUpdate();
+    userLotteryProfitUpdate();
   }, [user_deposits, user_choose, contract, account, value_choose]);
 
   const deposit = async (value) => {
@@ -52,7 +54,6 @@ const App = () => {
       .send({ from: account, value: value })
       .then(() => {
         userLotteryBalanceUpdate();
-        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -62,7 +63,6 @@ const App = () => {
       .send({ from: account })
       .then(() => {
         userLotteryBalanceUpdate();
-        document.getElementById("input_send").placeholder = "USD";
       });
   };
 
@@ -72,6 +72,7 @@ const App = () => {
       .call({ from: account })
       .then((amountDeposit) => {
         console.log("Tu deposito fue de: ", amountDeposit);
+
         setUserDeposits(amountDeposit);
       });
   };
@@ -154,6 +155,7 @@ const App = () => {
             Your Lottery balance: {user_deposits.toString().substring(0, 6)} BNB
           </div>
           <input
+            className="input_value"
             id="input_send"
             type="number"
             placeholder="USD"

@@ -1,0 +1,231 @@
+.tittle_prediction{
+        
+        font-style: normal;
+        font-size: 8rem;
+        line-height: 154px;      
+        color: #FFB800;
+    
+        mix-blend-mode: normal;
+        -webkit-text-stroke: 1px  #f8cf67;
+        backdrop-filter: blur(2px);
+}
+.number_game_prediction{
+        
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 48px;           
+            
+        color: #F3E5D5;
+            
+        mix-blend-mode: normal;
+        text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+
+        
+}
+.line_image{
+    margin: 2rem;
+    height: 1px;
+    background: rgb(253, 253, 253);
+}
+.price_loked{
+    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    /* identical to box height */
+
+
+    color: #FFCC15;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+.actual_pool {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+        /* identical to box height */
+    
+    
+    color: #F3E5D5;
+    
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+}
+.time, .countdown{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    color: #F3E5D5;
+    
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.up_price{
+    
+    width: 457px;
+    height: 106px;
+    background: rgba(255, 168, 0, 0.38);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #FFFFFF;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.actual_price{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 128px;
+    line-height: 154px;
+    /* identical to box height */
+
+
+    color: #FFBF1A;
+
+    mix-blend-mode: normal;
+    text-shadow: 8px 13px 4px rgba(0, 0, 0, 0.25);
+
+}
+.pair{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #F3E5D5;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+
+}
+.down_price{
+    width: 457px;
+    height: 106px;
+    
+
+    background: rgba(149, 71, 0, 0.28);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #FFFFFF;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.user_interactive_prediction{
+    flex-direction: row;
+
+}
+.btns_up_down{
+    flex-direction: row;
+
+}
+.btn_up{
+    width: 290px;
+    height: 97px;
+
+    background: #FFA800;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #FDFDFD;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.input_amount_prediction{
+    width: 269px;
+    height: 97px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 42px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 58px;
+
+    color: #AEAEAE;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+} 
+.btn_down{
+    width: 290px;
+    height: 97px;
+
+    background: #954700;
+    box-shadow: 0px 11px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #FDFDFD;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.texts_prediction{
+    flex-direction: row;
+
+}
+.minimun_amount{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    color: #F3E5D5;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+
+}
+.user_balance{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+
+    color: #F3E5D5;
+
+    mix-blend-mode: normal;
+    text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+}

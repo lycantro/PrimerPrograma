@@ -1,13 +1,14 @@
 body {
   margin: 0;
-  background-color: #282c34;
-  font-family: -apple-system, BlinkMacSystemFont;
+  background-image: url("./assets/images/background_general.jpg");
+  background-size: 100%;
+  font-family: -apple-system, Lato;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas;
+  font-family: Lato;
 }
 
 /* width */

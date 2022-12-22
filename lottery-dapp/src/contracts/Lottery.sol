@@ -39,14 +39,10 @@ contract Lottery {
        
 
     modifier OnlyOwner(){
-        require(msg.sender == Contract_Address,"You arent the owner of this Lottery");
+        require(msg.sender == Owner_Contract,"You arent the owner of this Lottery");
         _;
     }
 
-    modifier OnlyContract(){
-        require(msg.sender == Owner_Contract,"You arent the contract");
-        _;
-    }
 
     function changeOwnerFee(uint256 _fee) public OnlyOwner {
         OWNER_FEE = _fee;
@@ -199,6 +195,19 @@ contract Prediction is Lottery {
 
         //ActualPrice =_price;        
         (,ActualPrice,,,) =priceFeed.latestRoundData(); 
+    }
+
+    function priceLoked() public view returns(int){
+        return PriceLocked;
+    }
+
+    function timeLoked () public view returns(uint256){
+        return timeLocked;
+    }
+    function pricePair() public view returns (int){
+        int price;
+        (,price,,,) =priceFeed.latestRoundData();
+        return price;
     }
 
     

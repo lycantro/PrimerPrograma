@@ -6,6 +6,7 @@
     "@chainlink/contracts": "^0.5.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/lato": "^4.5.10",
     "@mui/material": "^5.10.17",
     "@mui/styled-engine-sc": "^5.10.16",
     "@openzeppelin/contracts": "^4.8.0",
