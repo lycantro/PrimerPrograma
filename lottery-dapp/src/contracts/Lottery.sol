@@ -43,7 +43,6 @@ contract Lottery {
         _;
     }
 
-
     function changeOwnerFee(uint256 _fee) public OnlyOwner {
         OWNER_FEE = _fee;
     }
@@ -220,8 +219,8 @@ contract Prediction is Lottery {
         return Bet_Down_Factor;
     }
 
-    function RewardsCalculated() public OnlyOwner{ //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
-
+    function RewardsCalculated() public { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
+        require(msg.sender == Owner_Contract,"You arent the owner of this Lottery choose the correct Sender");
         require(block.timestamp >= (timeLocked + 5 minutes),"The time isnt now");
         actualPrice();
 
