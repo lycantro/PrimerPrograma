@@ -50,22 +50,26 @@ const CountDownTimer = ({ minSecs }) => {
     if (minutes_time_actual - minutes_time_locked >= 0) {
       console.log("Entre");
       const c = contract;
-      console.log("contrato: ", c._address);
       const rewardsCalculatedTx = contract.methods.RewardsCalculated();
-
+      const priveKey =
+        "ed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf";
       const createTransaction = await window.web3.eth.accounts.signTransaction(
         {
+          from: "0xFbe2556Cba9BB1D2F184db64197593D8D14A218f",
           to: c._address,
           data: rewardsCalculatedTx.encodeABI(),
           gas: await rewardsCalculatedTx.estimateGas(),
-          chainId: "97",
         },
-        "0xed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf"
+        priveKey
       );
 
       const createReceipt = await window.web3.eth.sendSignedTransaction(
-        createTransaction.rawTransaction
+        createTransaction.rawTransaction,
+        (err, txHash) => {
+          console.log("err:", err, "txHash:", txHash);
+        }
       );
+
       console.log(
         `Transaction send with hash: ${createReceipt.transactionHash}`
       );
@@ -86,10 +90,6 @@ const CountDownTimer = ({ minSecs }) => {
     } else if (secs === 0) {
       setTime([mins - 1, 59]);
       timeLocked();
-      const date_time_locked = new Date(time_locked * 1000); //x1000 to convert from seconds to milliseconds
-      console.log(date_time_locked, await window.web3.eth.net.getId());
-      const b = await contract.methods.Owner_Contract().call();
-      console.log("owner contract:", b);
     } else {
       setTime([mins, secs - 1]);
     }
