@@ -23,6 +23,7 @@ contract Lottery {
 
     event Deposit (address, uint256) ;
     event withdraw (address, uint256);
+    event Sender (address);
 
     struct Competitor {
         address funder;
@@ -45,6 +46,11 @@ contract Lottery {
 
     function changeOwnerFee(uint256 _fee) public OnlyOwner {
         OWNER_FEE = _fee;
+    }
+
+    function getSender() public returns(address){
+        emit Sender (msg.sender);
+        return msg.sender;
     }
 
     receive()external payable{
@@ -220,7 +226,7 @@ contract Prediction is Lottery {
     }
 
     function RewardsCalculated() public { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
-        require(msg.sender == Owner_Contract,"You arent the owner of this Lottery choose the correct Sender");
+        require(getSender() == Owner_Contract,"You arent the owner of this Lottery choose the correct Sender");
         require(block.timestamp >= (timeLocked + 5 minutes),"The time isnt now");
         actualPrice();
 
