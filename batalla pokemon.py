@@ -1,7 +1,7 @@
 from random import randint
 import os
 print("BIENVENIDO A LA BATALLLA POKEMON"
-      "")
+      "")#
 vida_pikachu = 80
 vida_alakazan = 80
 while vida_pikachu > 0 and vida_alakazan > 0:
