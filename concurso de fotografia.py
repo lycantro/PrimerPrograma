@@ -17,7 +17,7 @@ if estrato == 2 and salario < 1500000:
 
 else: print("para estrato 2 no aplicas ")
 
-
+#
 if estrato == 3 and salario > 1500000:
 
    print ("felicidades aplicas al descuento de estrato 3 5%")
