@@ -55,7 +55,7 @@ module.exports = {
           `https://data-seed-prebsc-1-s1.binance.org:8545`,
           0 //Wallet index used in Metamask : 1 for account 2 in Metamask
         ),
-      network_id: 97,
+      network_id: 97, 
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true,

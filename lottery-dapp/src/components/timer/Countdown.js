@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Buffer } from "buffer";
 import loadWeb3 from "../../utils/functions/loadWeb3";
 import loadBlockchainData from "../../utils/functions/loadBlockchainData";
 
@@ -47,32 +47,39 @@ const CountDownTimer = ({ minSecs }) => {
     const seconds_time_locked = date_time_locked.getSeconds(); //Tiempo actual
     console.log("Time locked: ", minutes_time_locked, " ", seconds_time_locked);
 
-    if (minutes_time_actual - minutes_time_locked >= 0) {
-      console.log("Entre");
+    if (minutes_time_actual - minutes_time_locked > 0) {
       const c = contract;
-      const rewardsCalculatedTx = contract.methods.RewardsCalculated();
-      const priveKey =
-        "ed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf";
-      const createTransaction = await window.web3.eth.accounts.signTransaction(
-        {
-          from: "0xFbe2556Cba9BB1D2F184db64197593D8D14A218f",
-          to: c._address,
-          data: rewardsCalculatedTx.encodeABI(),
-          gas: await rewardsCalculatedTx.estimateGas(),
-        },
-        priveKey
-      );
-
-      const createReceipt = await window.web3.eth.sendSignedTransaction(
-        createTransaction.rawTransaction,
-        (err, txHash) => {
-          console.log("err:", err, "txHash:", txHash);
-        }
-      );
-
+      const rewardsCalculatedTx = contract.methods.RewardsCalculated(); //contract.methods.getSender();
       console.log(
-        `Transaction send with hash: ${createReceipt.transactionHash}`
+        "0xa1ea8cd5 ",
+        rewardsCalculatedTx.encodeABI(),
+        rewardsCalculatedTx
       );
+      const priveKey =
+        "0xed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf";
+
+      const Tx = {
+        to: c._address,
+        data: rewardsCalculatedTx.encodeABI(),
+        gas: 2000000,
+      };
+      
+      const createTransaction = await window.web3.eth.accounts
+        .signTransaction(Tx, priveKey, async function (err, data) {
+          console.log("Entre sign");
+          const createReceipt = await window.web3.eth.sendSignedTransaction(
+            data.rawTransaction,
+            (err, txHash) => {
+              console.log("err:", err, "txHash:", txHash);
+            }
+          );
+          console.log(
+            `   Transaction send with hash: ${createReceipt.transactionHash}, "and:`,
+            createReceipt
+          );
+        })
+        .then(console.log);
+
       /*
       console.log("Entre");
       contract.methods

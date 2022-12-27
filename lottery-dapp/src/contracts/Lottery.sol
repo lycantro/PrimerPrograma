@@ -23,6 +23,7 @@ contract Lottery {
 
     event Deposit (address, uint256) ;
     event withdraw (address, uint256);
+    event Sender (address);
 
     struct Competitor {
         address funder;
@@ -42,7 +43,6 @@ contract Lottery {
         require(msg.sender == Owner_Contract,"You arent the owner of this Lottery");
         _;
     }
-
 
     function changeOwnerFee(uint256 _fee) public OnlyOwner {
         OWNER_FEE = _fee;
@@ -103,6 +103,14 @@ contract Lottery {
 
     function userProfits() public view returns(uint256){
         return users[msg.sender].amountWins;
+    }
+
+    function userBetAmountUp() public view returns(uint256){
+        return users[msg.sender].betAmountUpPrediction;
+    }
+
+    function userBetAmountDown() public view returns(uint256){
+        return users[msg.sender].betAmountDownPrediction;
     }
 
 }
@@ -220,8 +228,7 @@ contract Prediction is Lottery {
         return Bet_Down_Factor;
     }
 
-    function RewardsCalculated() public OnlyOwner{ //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
-
+    function RewardsCalculated() public OnlyOwner { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
         require(block.timestamp >= (timeLocked + 5 minutes),"The time isnt now");
         actualPrice();
 
