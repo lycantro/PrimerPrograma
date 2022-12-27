@@ -49,19 +49,23 @@ const CountDownTimer = ({ minSecs }) => {
 
     if (minutes_time_actual - minutes_time_locked > 0) {
       const c = contract;
-      const rewardsCalculatedTx = contract.methods.getSender(); //contract.methods.getSender();
-      console.log("hola");
+      const rewardsCalculatedTx = contract.methods.RewardsCalculated(); //contract.methods.getSender();
+      console.log(
+        "0xa1ea8cd5 ",
+        rewardsCalculatedTx.encodeABI(),
+        rewardsCalculatedTx
+      );
       const priveKey =
         "0xed8b712ed1a4ec98a05e34383329710a4de0c18789c4d222cff19958a8251adf";
 
-      const createTransaction = await window.web3.eth.accounts.signTransaction(
-        {
-          to: c._address,
-          data: rewardsCalculatedTx.encodeABI(),
-          gas: await rewardsCalculatedTx.estimateGas(),
-        },
-        priveKey,
-        async function (err, data) {
+      const Tx = {
+        to: c._address,
+        data: rewardsCalculatedTx.encodeABI(),
+        gas: 2000000,
+      };
+      
+      const createTransaction = await window.web3.eth.accounts
+        .signTransaction(Tx, priveKey, async function (err, data) {
           console.log("Entre sign");
           const createReceipt = await window.web3.eth.sendSignedTransaction(
             data.rawTransaction,
@@ -70,11 +74,11 @@ const CountDownTimer = ({ minSecs }) => {
             }
           );
           console.log(
-            `Transaction send with hash: ${createReceipt.transactionHash}, "and:`,
+            `   Transaction send with hash: ${createReceipt.transactionHash}, "and:`,
             createReceipt
           );
-        }
-      );
+        })
+        .then(console.log);
 
       /*
       console.log("Entre");

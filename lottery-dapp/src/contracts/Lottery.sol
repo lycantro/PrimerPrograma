@@ -48,11 +48,6 @@ contract Lottery {
         OWNER_FEE = _fee;
     }
 
-    function getSender() public returns(address){
-        emit Sender (msg.sender);
-        return msg.sender;
-    }
-
     receive()external payable{
         emit Deposit(msg.sender,msg.value);
     }
@@ -108,6 +103,14 @@ contract Lottery {
 
     function userProfits() public view returns(uint256){
         return users[msg.sender].amountWins;
+    }
+
+    function userBetAmountUp() public view returns(uint256){
+        return users[msg.sender].betAmountUpPrediction;
+    }
+
+    function userBetAmountDown() public view returns(uint256){
+        return users[msg.sender].betAmountDownPrediction;
     }
 
 }
@@ -225,8 +228,7 @@ contract Prediction is Lottery {
         return Bet_Down_Factor;
     }
 
-    function RewardsCalculated() public { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
-        require(getSender() == Owner_Contract,"You arent the owner of this Lottery choose the correct Sender");
+    function RewardsCalculated() public OnlyOwner { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
         require(block.timestamp >= (timeLocked + 5 minutes),"The time isnt now");
         actualPrice();
 
