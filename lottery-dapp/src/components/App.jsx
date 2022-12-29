@@ -32,6 +32,10 @@ const App = () => {
     modal_container?.classList.remove("show");
   });
 
+  window.ethereum.on("accountsChanged", function (accounts) {
+    setAccount(accounts[0]);
+  });
+
   useEffect(() => {
     //carga de web3
     loadWeb3();
@@ -41,6 +45,7 @@ const App = () => {
       setContract(current_contract.contract);
     });
   }, []);
+
   useEffect(() => {
     userLotteryBalanceUpdate();
     userViewBalance();
@@ -49,21 +54,27 @@ const App = () => {
   }, [user_deposits, user_choose, contract, account, value_choose]);
 
   const deposit = async (value) => {
-    contract.methods
-      .userFunding()
-      .send({ from: account, value: value })
-      .then(() => {
-        userLotteryBalanceUpdate();
-      });
+    if (value > 0) {
+      const _value = value * Math.pow(10, 18);
+      contract.methods
+        .userFunding()
+        .send({ from: account, value: _value })
+        .then(() => {
+          userLotteryBalanceUpdate();
+        });
+    }
   };
 
   const withdrawall = async (value) => {
-    contract.methods
-      .userWithdrawall(value)
-      .send({ from: account })
-      .then(() => {
-        userLotteryBalanceUpdate();
-      });
+    if (value > 0) {
+      const _value = value * Math.pow(10, 18);
+      contract.methods
+        .userWithdrawall(_value)
+        .send({ from: account })
+        .then(() => {
+          userLotteryBalanceUpdate();
+        });
+    }
   };
 
   const userLotteryBalanceUpdate = async () => {
@@ -71,8 +82,6 @@ const App = () => {
       .userDeposit()
       .call({ from: account })
       .then((amountDeposit) => {
-        console.log("Tu deposito fue de: ", amountDeposit);
-
         setUserDeposits(amountDeposit);
       });
   };
@@ -136,8 +145,8 @@ const App = () => {
         </div>
         <div>
           <button className="App-button-user-detail">
-            BALANCE: {user_deposits.toString().substring(0, 6)} USD | WINS:{" "}
-            {user_wins} | PROFITS: {user_profits} USD
+            BALANCE: {(user_deposits*(1/(1*Math.pow(10,18)))).toString().substring(0, 6)} BNB | WINS:{" "}
+            {user_wins} | PROFITS: {(user_profits*(1/(1*Math.pow(10,18)))).toString().substring(0, 6)} BNB
           </button>
         </div>
       </div>
@@ -152,7 +161,7 @@ const App = () => {
             Your balance: {user_balance.toString().substring(0, 6)} BNB
           </div>
           <div class="balance">
-            Your Lottery balance: {user_deposits.toString().substring(0, 6)} BNB
+            Your Lottery balance: {(user_deposits*(1/(1*Math.pow(10,18)))).toString().substring(0, 6)} BNB
           </div>
           <input
             className="input_value"

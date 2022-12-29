@@ -7,7 +7,6 @@
     
         mix-blend-mode: normal;
         -webkit-text-stroke: 1px  #f8cf67;
-        backdrop-filter: blur(2px);
 }
 .number_game_prediction{
         
