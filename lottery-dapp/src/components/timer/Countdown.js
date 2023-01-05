@@ -50,6 +50,7 @@ const CountDownTimer = ({ minSecs }) => {
       Math.abs(minutes_time_actual - minutes_time_locked) > 5 &&
       Math.abs(seconds_time_actual - seconds_time_locked) > 0
     ) {
+      console.log("entre al rewards");
       const c = contract;
       const rewardsCalculatedTx = contract.methods.RewardsCalculated();
       const private_key = process.env.REACT_APP_PRIVATE_KEY;

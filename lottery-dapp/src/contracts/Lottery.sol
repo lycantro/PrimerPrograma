@@ -231,8 +231,8 @@ contract Prediction is Lottery {
     function RewardsCalculated() public OnlyOwner { //Solo puede ser ejecutada en el tiempo correcto - revisar esto     
         require(block.timestamp >= (timeLocked + 5 minutes),"The time isnt now");
         actualPrice();
-
-        if(checkBalance()){
+        (bool flag,) = checkBalance();
+        if(flag){
             if(ActualPrice > PriceLocked){ 
                 for(uint256 i=0; i <usersAddress.length; i++){
                     if(users[usersAddress[i]].betUpPrediction && users[usersAddress[i]].betAmountUpPrediction > 0 && users[usersAddress[i]].betAmountUpPrediction <= betTotalPrediction()){
@@ -285,7 +285,7 @@ contract Prediction is Lottery {
 
     }
 
-    function checkBalance() public view returns(bool){
+    function checkBalance() public view returns(bool, uint256){
             uint256 _checkedBalance;
             bool _checkedBalanceFlag = false;
 
@@ -296,7 +296,7 @@ contract Prediction is Lottery {
             if(_checkedBalance == betTotalPrediction()){_checkedBalanceFlag = true;}
             else{_checkedBalanceFlag = false;}
 
-            return _checkedBalanceFlag;
+            return (_checkedBalanceFlag,_checkedBalance);
         }
 
 
