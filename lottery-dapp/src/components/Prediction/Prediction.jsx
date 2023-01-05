@@ -34,14 +34,21 @@ const Prediction = () => {
     pricePairUpdate();
     priceLocked();
     userLotteryBalanceUpdate();
-  }, [contract, account, price_pair, price_locked, value_choose]);
+  }, [
+    contract,
+    account,
+    price_pair,
+    price_locked,
+    value_choose,
+    user_deposits,
+  ]);
 
   setInterval(() => {
     pricePairUpdate();
-    console.log("entreeeeeeeeee");
   }, 10000);
 
   const userLotteryBalanceUpdate = async () => {
+    console.log("me llamo");
     contract.methods
       .userDeposit()
       .call({ from: account })
@@ -98,31 +105,33 @@ const Prediction = () => {
   const userUp = async (value) => {
     if (value > 0) {
       const _value = value * Math.pow(10, 18);
-    contract.methods
-      .priceUp(_value)
-      .send({ from: account })
-      .then(() => {
-        betUpFactor();
-        betDownFactor();
-        betPredictionPool();
-        pricePairUpdate();
-        priceLocked();
-      });}
+      contract.methods
+        .priceUp(_value)
+        .send({ from: account })
+        .then(() => {
+          betUpFactor();
+          betDownFactor();
+          betPredictionPool();
+          pricePairUpdate();
+          priceLocked();
+        });
+    }
   };
 
   const userDown = async (value) => {
     if (value > 0) {
       const _value = value * Math.pow(10, 18);
-    contract.methods
-      .priceDown(_value)
-      .send({ from: account })
-      .then(() => {
-        betUpFactor();
-        betDownFactor();
-        betPredictionPool();
-        pricePairUpdate();
-        priceLocked();
-      });}
+      contract.methods
+        .priceDown(_value)
+        .send({ from: account })
+        .then(() => {
+          betUpFactor();
+          betDownFactor();
+          betPredictionPool();
+          pricePairUpdate();
+          priceLocked();
+        });
+    }
   };
 
   return (

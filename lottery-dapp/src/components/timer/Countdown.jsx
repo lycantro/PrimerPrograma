@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import loadWeb3 from "../../utils/functions/loadWeb3";
 import loadBlockchainData from "../../utils/functions/loadBlockchainData";
+import userLotteryBalanceUpdate from "../Prediction/Prediction";
 
 const CountDownTimer = ({ minSecs }) => {
   const { minutes = 0, seconds = 60 } = minSecs;
@@ -50,7 +51,6 @@ const CountDownTimer = ({ minSecs }) => {
       Math.abs(minutes_time_actual - minutes_time_locked) > 5 &&
       Math.abs(seconds_time_actual - seconds_time_locked) > 0
     ) {
-      console.log("entre al rewards");
       const c = contract;
       const rewardsCalculatedTx = contract.methods.RewardsCalculated();
       const private_key = process.env.REACT_APP_PRIVATE_KEY;
@@ -68,6 +68,7 @@ const CountDownTimer = ({ minSecs }) => {
           console.log("Transaction send: ", data);
         }
       );
+      userLotteryBalanceUpdate();
     }
   };
   const tick = async () => {
