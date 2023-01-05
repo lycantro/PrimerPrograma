@@ -59,11 +59,14 @@ const CountDownTimer = ({ minSecs }) => {
         gas: 2000000,
       };
 
-      const createTransaction = await window.web3.eth.accounts
-        .signTransaction(Tx, private_key, async function (err, data) {
+      const createTransaction = await window.web3.eth.accounts.signTransaction(
+        Tx,
+        private_key,
+        async function (err, data) {
           await window.web3.eth.sendSignedTransaction(data.rawTransaction);
-        })
-        .then(console.log);
+          console.log("Transaction send: ", data);
+        }
+      );
     }
   };
   const tick = async () => {
