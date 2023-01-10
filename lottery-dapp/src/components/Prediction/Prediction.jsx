@@ -45,10 +45,9 @@ const Prediction = () => {
 
   setInterval(() => {
     pricePairUpdate();
-  }, 10000);
+  }, 20000);
 
   const userLotteryBalanceUpdate = async () => {
-    console.log("me llamo");
     contract.methods
       .userDeposit()
       .call({ from: account })

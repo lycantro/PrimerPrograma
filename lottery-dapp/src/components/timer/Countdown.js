@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import loadWeb3 from "../../utils/functions/loadWeb3";
 import loadBlockchainData from "../../utils/functions/loadBlockchainData";
-import userLotteryBalanceUpdate from "../Prediction/Prediction";
 
 const CountDownTimer = ({ minSecs }) => {
   const { minutes = 0, seconds = 60 } = minSecs;
@@ -68,7 +67,6 @@ const CountDownTimer = ({ minSecs }) => {
           console.log("Transaction send: ", data);
         }
       );
-      userLotteryBalanceUpdate();
     }
   };
   const tick = async () => {
@@ -98,5 +96,4 @@ const CountDownTimer = ({ minSecs }) => {
     </div>
   );
 };
-
 export default CountDownTimer;
