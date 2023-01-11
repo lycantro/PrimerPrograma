@@ -17,10 +17,9 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-
+require('dotenv').config();
 var HDWalletProvider = require("@truffle/hdwallet-provider");
-var mnenomic =
-  "lonely regret kangaroo distance horse burden grocery recycle jump ordinary diet fault";
+var mnenomic = process.env.REACT_APP_MNEMONIC;
 //
 //const fs = require("fs");
 //const mnemonic = fs.readFileSync(".secret").toString().trim();
